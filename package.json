@@ -1,0 +1,35 @@
+{
+  "name": "mango-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestates/Mango-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codestates/Mango-server/issues"
+  },
+  "homepage": "https://github.com/codestates/Mango-server#readme",
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
