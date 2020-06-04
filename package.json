@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,9 +18,11 @@
   },
   "homepage": "https://github.com/codestates/Mango-server#readme",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "eslint": "^7.1.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.8"
+    "lint-staged": "^10.2.8",
+    "mocha": "^7.2.0"
   },
   "husky": {
     "hooks": {
@@ -31,5 +34,13 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.17"
   }
 }
