@@ -13,6 +13,8 @@ app.use('/signup', routing.signup);
 app.use('/signout', routing.signout);
 
 
-app.listen(3000, () => {
+let open = app.listen(3000, () => {
   console.log('3000 port start');
-})
+});
+
+module.exports = open;
