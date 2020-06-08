@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
-const routing = require('./routing');
+const routes = require('./controllers');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const db = require('./db');
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin : ['http://localhost:3001']
+  origin : ['http://localhost:3000', 'http://localhost:3001'],
+  methods:['GET', 'POST'],
+  credentials: true
 }));
-app.use('/signin', routing.signin);
-app.use('/signup', routing.signup);
-app.use('/signout', routing.signout);
+app.use('/signin', routes.signin);
+app.use('/signup', routes.signup);
+app.use('/signout', routes.signout);
 
 
 let open = app.listen(3000, () => {
