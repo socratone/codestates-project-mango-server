@@ -14,9 +14,10 @@ app.use(cors({
 app.use('/signin', routes.signin);
 app.use('/signup', routes.signup);
 app.use('/signout', routes.signout);
+app.use('/refresh', routes.refresh);
+app.use('/scoringMusic', routes.socoringMusic);
 
-
-let open = app.listen(3000, () => {
+const open = app.listen(3000, () => {
   console.log('3000 port start');
 });
 
