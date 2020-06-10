@@ -76,6 +76,7 @@ describe('USER API TEST', () => {
       expect(res.status).to.equal(200);
       expect(res.body).to.have.all.keys(
         [
+          'userinfo',
           'access_token',
           'refresh_token'
         ] 
@@ -88,7 +89,7 @@ describe('USER API TEST', () => {
         password: '78'
       });
       expect(res.status).to.equal(404);
-      expect(res.body).to.equal('unvalid user');
+      expect(res.text).to.equal('unvalid user');
     });
   
     it('비밀번호가 틀리면 로그인이 실패합니다', async() => {
@@ -97,7 +98,7 @@ describe('USER API TEST', () => {
         password: '34'
       });
       expect(res.status).to.equal(404);
-      expect(res.body).to.equal('unvalid user');
+      expect(res.text).to.equal('unvalid user');
     });
   });
 });
