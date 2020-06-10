@@ -1,7 +1,38 @@
 const Users = require('../models').Users;
-
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+require('dotenv').config();
+const asyncRedis = require("async-redis");
+const redis = asyncRedis.createClient();
 const signin = async (req, res) => {
-
+  try {
+    const { email, password } = req.body;
+    const user = await Users.findOne({email});
+    if(!user) {
+      return res.status(404).end('unvalid user');
+    }
+    const judge = await bcrypt.compare(password, user.password);
+    if(judge) {
+      const userInfo = { email : user.email };
+      const secretKey = process.env.TOKEN_KEY;
+      const options = { expiresIn: '1m'};
+      const access_token = await jwt.sign(userInfo, secretKey, options);
+      const refresh_token = await jwt.sign({ refresh: true }, secretKey, {expiresIn:'14d'});
+      await redis.set(refresh_token, email);
+      const userinfo = {email: user.email, nickname: user.nickname};
+      res.status(200).json({
+        userinfo,
+        access_token,
+        refresh_token
+      });
+    }else {
+      res.status(404).end('unvalid user');
+    }
+    
+  }
+  catch(err) {
+    res.status(500).end(err);
+  }
 };
 
 module.exports = signin;
