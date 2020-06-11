@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 
 const musicsSchema = new mongoose.Schema({
   id: mongoose.Schema.Types.ObjectId,
   thumbnail: String,
   videoid: String,
   title: String,
-  music_list_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Musiclist'},
   rating: Number,
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 }, {
   versionKey: false
 });
-
+musicsSchema.plugin(findOrCreate);
 module.exports = mongoose.model('Music', musicsSchema);
 
 
