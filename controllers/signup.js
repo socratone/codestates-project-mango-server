@@ -2,6 +2,8 @@ const Users = require('../models').Users;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
+const asyncRedis = require("async-redis");
+const redis = asyncRedis.createClient();
 
 const signup = async (req, res) => {
   const {nickname, email, password} = req.body;
@@ -9,18 +11,24 @@ const signup = async (req, res) => {
   const hashPass = await bcrypt.hash(password, salt);
   
   try{
-    let user = await Users.create({
+    const user = new Users({
       nickname,
       email,
       password: hashPass,
     });
+    await user.save();
     
     const secretKey = process.env.TOKEN_KEY;
-    const options = { expiresIn : '1h' };
+    const options = { expiresIn : '30m' };
     const rfOptions = { expiresIn : '14d' };  
     const access_token = await jwt.sign({ id : user.id }, secretKey, options);
     const refresh_token = await jwt.sign({ id : user.id }, secretKey, rfOptions);
-    res.status(201).json({ access_token, refresh_token });
+    await redis.set(refresh_token, JSON.stringify({email, id:user._id}));
+    const userinfo = { email: user.email, nickname: user.nickname };
+    res.status(201).json({ 
+      access_token, 
+      refresh_token,
+      userinfo });
   }
   catch(err){
     res.status(409).end('Alredy user');
