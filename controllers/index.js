@@ -3,5 +3,10 @@ module.exports= {
   signout : require('./signout'),
   signup : require('./signup'),
   refresh : require('./refresh'),
-  socoringMusic : require('./scoringMusic'),
+  ratingMusic : require('./ratingMusic'),
+  getMusiclists : require('./getMusiclists'),
+  postMusiclist : require('./postMusiclist'),
+  addMusic : require('./addMusic'),
+  deleteMusic : require('./deleteMusic'),
+  delRating : require('./delRating')
 };
