@@ -53,6 +53,7 @@ describe('USER API TEST', () => {
       expect(res.status).to.equal(201);
       expect(res.body).to.have.all.keys(
         [
+          'userinfo',
           'access_token',
           'refresh_token'
         ] 
