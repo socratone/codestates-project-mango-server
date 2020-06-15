@@ -8,5 +8,8 @@ module.exports= {
   postMusiclist : require('./postMusiclist'),
   addMusic : require('./addMusic'),
   deleteMusic : require('./deleteMusic'),
-  delRating : require('./delRating')
+  delRatingMusic : require('./delRatingMusic'),
+  getRatingMusiclist : require('./getRatingMusiclist'),
+  postRatingMusiclist : require('./postRatingMusiclist'),
+  deleteMusiclist : require('./deleteMusiclist')
 };
