@@ -33,7 +33,7 @@ const signup = async (req, res) => {
     });
   }
   catch(err){
-    res.status(409).end('Alredy user');
+    res.status(409).end('Already user');
   }
 };
 
