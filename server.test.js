@@ -41,7 +41,7 @@ describe('USER API TEST', () => {
         password: '0000'
       });
       expect(res.status).to.equal(409);
-      expect(res.text).to.equal('Alredy user');
+      expect(res.text).to.equal('Already user');
     });
   
     it('회원 가입에 성공했으면 토큰을 받아야 합니다.', async() => {
