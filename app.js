@@ -11,16 +11,21 @@ app.use(cors({
   methods:['GET', 'POST'],
   credentials: true
 }));
+
 app.use('/signin', routes.signin);
 app.use('/signup', routes.signup);
 app.use('/signout', routes.signout);
 app.use('/refresh', routes.refresh);
-app.use('/ratingMusic', routes.ratingMusic);
-app.use('/getMusiclists', routes.getMusiclists);
+app.post('/ratingMusic', routes.ratingMusic);
+app.get('/getMusiclists', routes.getMusiclists);
 app.post('/postMusiclist', routes.postMusiclist);
 app.post('/addMusic', routes.addMusic);
 app.post('/deleteMusic', routes.deleteMusic);
-app.post('/delRating', routes.delRating);
+app.post('/delRatingMusic', routes.delRatingMusic);
+app.get('/getRatingMusiclist', routes.getRatingMusiclist);
+app.post('/postRatingMusiclist', routes.postRatingMusiclist);
+app.use('/deleteMusiclist', routes.deleteMusiclist);
+
 const open = app.listen(3000, () => {
   console.log('3000 port start');
 });
