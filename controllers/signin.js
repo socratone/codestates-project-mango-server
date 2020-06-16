@@ -18,7 +18,7 @@ const signin = async (req, res) => {
       const options = { expiresIn: '30m'};
       const access_token = await jwt.sign(userInfo, secretKey, options);
       const refresh_token = await jwt.sign({ refresh: true }, secretKey, {expiresIn:'14d'});
-      await redis.set(refresh_token, JSON.stringify({email, id:user._id}));
+      await redis.set(refresh_token, JSON.stringify({email, id : user._id}));
       await redis.expire(refresh_token, 8640 * 14);
       const userinfo = {email: user.email, nickname: user.nickname};
       return res.status(200).json({
