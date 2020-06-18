@@ -25,6 +25,7 @@ app.post('/delRatingMusic', routes.delRatingMusic);
 app.get('/getRatingMusiclist', routes.getRatingMusiclist);
 app.post('/postRatingMusiclist', routes.postRatingMusiclist);
 app.use('/deleteMusiclist', routes.deleteMusiclist);
+app.get('/recommendedMusic', routes.recommendedMusic);
 
 const open = app.listen(3000, () => {
   console.log('3000 port start');
