@@ -23,7 +23,7 @@ const signup = async (req, res) => {
     const rfOptions = { expiresIn : '14d' };  
     const access_token = await jwt.sign({ id : user.id, email }, secretKey, options);
     const refresh_token = await jwt.sign({ refresh: true }, secretKey, rfOptions);
-    await redis.set(refresh_token, JSON.stringify({email, id:user._id}));
+    await redis.set(refresh_token, JSON.stringify({email, id: user._id}));
     await redis.expire(refresh_token, 8640 * 14);
     const userinfo = { email: user.email, nickname: user.nickname };
     res.status(201).json({
