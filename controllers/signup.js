@@ -21,9 +21,9 @@ const signup = async (req, res) => {
     const secretKey = process.env.TOKEN_KEY;
     const options = { expiresIn : '30m' };
     const rfOptions = { expiresIn : '14d' };  
-    const access_token = await jwt.sign({ id : user._id, email }, secretKey, options);
-    const refresh_token = await jwt.sign({ id : user._id, email }, secretKey, rfOptions);
-    await redis.set(refresh_token, JSON.stringify({email, id : user._id}));
+    const access_token = await jwt.sign({ id : user.id, email }, secretKey, options);
+    const refresh_token = await jwt.sign({ refresh: true }, secretKey, rfOptions);
+    await redis.set(refresh_token, JSON.stringify({email, id: user._id}));
     await redis.expire(refresh_token, 8640 * 14);
     const userinfo = { email: user.email, nickname: user.nickname };
     res.status(201).json({
@@ -38,16 +38,3 @@ const signup = async (req, res) => {
 };
 
 module.exports = signup;
-
-// const userInfo = { id : user.id};
-// const secretKey = process.env.TOKEN_KEY;
-// const options = { expiresIn: '1d' };
-// const token = await jwt.sign(userInfo, secretKey, options);
-// const refreshtoken = createRefreshToken();
-
-// createRefreshToken() = () => {
-// let salt = bcrypt.genSaltSync(10);
-// bcrypt.hashSync(config.tokenSecret, salt);
-// }
-// res.cookie('access-token', token, { httpOnly : true });
-// res.cookie('refresh-token', token, { httpOnly : true});
