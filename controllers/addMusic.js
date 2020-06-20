@@ -2,6 +2,9 @@ const Musiclists = require('../models').Musiclists;
 const errorHandling = require('../errorHandling');
 const addMusic = async (req, res) => {
   const {thumbnail, videoid, title, listname} = req.body;
+  if(!thumbnail || !videoid || !title || !listname) {
+    return res.status(400).end('Bad Request');
+  }
   const user_id = await errorHandling(req, res);
   if(!user_id) return;
   const {nModified} = await Musiclists.update({listname, user_id},{$addToSet: {musics: {

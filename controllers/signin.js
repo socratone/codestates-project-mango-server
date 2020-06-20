@@ -7,6 +7,9 @@ const redis = asyncRedis.createClient();
 const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    if( !email || !password) {
+      return res.status(400).end('Bad Request');
+    }
     const user = await Users.findOne({email});
     if(!user) {
       return res.status(404).end('unvalid user');
