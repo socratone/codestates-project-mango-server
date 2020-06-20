@@ -11,5 +11,6 @@ module.exports= {
   delRatingMusic : require('./delRatingMusic'),
   getRatingMusiclist : require('./getRatingMusiclist'),
   postRatingMusiclist : require('./postRatingMusiclist'),
-  deleteMusiclist : require('./deleteMusiclist')
+  deleteMusiclist : require('./deleteMusiclist'),
+  recommendedMusic : require('./recommendedMusic')
 };
