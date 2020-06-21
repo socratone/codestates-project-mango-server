@@ -7,9 +7,12 @@ const db = require('./db');
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin : ['http://localhost:3000', 'http://localhost:3001'],
-  methods:['GET', 'POST'],
-  credentials: true
+  origin : [
+    'http://localhost:3000', 
+    'http://localhost:3001', 
+    "http://mango-client.s3-website.ap-northeast-2.amazonaws.com"
+  ],
+  methods:['GET', 'POST']
 }));
 
 app.use('/signin', routes.signin);
