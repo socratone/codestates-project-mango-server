@@ -71,7 +71,6 @@ let recommendation_eng = function(dataset,person,distance){
         if(!this[props]){
           this[props] =0;
         }
-    
         this[props] += value;
       }
     },
@@ -80,7 +79,7 @@ let recommendation_eng = function(dataset,person,distance){
     if(other ===person) continue;
     let similar = distance(dataset,person,other);
     
-    if(similar <=0) continue;
+    if(similar <= 0.5) continue;
     for(let item in dataset[other]){
       if(!(item in dataset[person]) ||(dataset[person][item]==0)){
         totals.setDefault(item,dataset[other][item]*similar);
@@ -102,6 +101,9 @@ let recommendation_eng = function(dataset,person,distance){
   });
   let recommend = []; 
   for(let i in rank_lst){
+    if(rank_lst[i].val < 3) {
+      break;
+    }
     recommend.push(JSON.parse(rank_lst[i].items));
   }
   return recommend;
