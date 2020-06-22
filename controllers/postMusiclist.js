@@ -4,6 +4,7 @@ const postMusiclist = async (req, res) => {
   const user_id = await errorHandling(req, res);
   if(!user_id) return;
   const { listname } = req.body; 
+  if(!listname)  return res.status(400).end('Bad Request');
   const {doc, created} = await Musiclists.findOrCreate({
     listname,
     user_id
