@@ -1,7 +1,7 @@
 const Musics = require('../models').Musics;
 const errorHandling = require('../errorHandling');
 const postRatingMusiclist = async (req, res) => {
-  const ratingMusiclist = req.body; 
+  const {ratingMusiclist} = req.body; 
   const user_id = await errorHandling(req, res);
   for(let music of ratingMusiclist) {
     music.user_id = user_id;
