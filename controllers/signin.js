@@ -12,7 +12,7 @@ const signin = async (req, res) => {
     }
     const user = await Users.findOne({email});
     if(!user) {
-      return res.status(404).end('unvalid user');
+      return res.status(404).end('아이디가 틀렸습니다');
     }
     const judge = await bcrypt.compare(password, user.password);
     if(judge) {
@@ -30,7 +30,7 @@ const signin = async (req, res) => {
         refresh_token
       });
     }
-    return res.status(404).end('unvalid user');
+    return res.status(404).end('비밀번호가 틀렸습니다');
   }
   catch(err) {
     res.status(500).end('Server error');
