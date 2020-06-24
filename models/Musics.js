@@ -3,11 +3,11 @@ const findOrCreate = require('mongoose-findorcreate');
 
 const musicsSchema = new mongoose.Schema({
   id: mongoose.Schema.Types.ObjectId,
-  thumbnail: String,
-  videoid: String,
-  title: String,
-  rating: Number,
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  thumbnail: {type: String, required: true},
+  videoid: {type: String, required: true},
+  title: {type: String, required: true},
+  rating: {type: Number, required: true},
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 }, {
   versionKey: false
 });
