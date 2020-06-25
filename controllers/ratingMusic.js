@@ -7,14 +7,14 @@ const ratingMusic = async (req, res) => {
   }
   const user_id = await errorHandling(req, res);
   if(!user_id) return;
-  const music = await Musics.findOneAndUpdate({videoid, user_id},{
+  await Musics.findOneAndUpdate({videoid, user_id},{
     thumbnail, 
     videoid, 
     title,
     rating,
     user_id 
   }, {upsert: true});
-  res.status(200).json(music);
+  res.status(200).json({thumbnail, videoid, title, rating});
 };
   
 module.exports = ratingMusic;
