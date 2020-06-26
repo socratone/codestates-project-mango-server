@@ -5,9 +5,6 @@ const routes = require('./controllers');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./db');
-const moment = require('moment');
-const fs = require('fs');
-const multer = require('multer');
 
 app.use(bodyParser.json());
 app.use(cors({
