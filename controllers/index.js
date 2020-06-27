@@ -13,5 +13,6 @@ module.exports= {
   postRatingMusiclist : require('./postRatingMusiclist'),
   deleteMusiclist : require('./deleteMusiclist'),
   recommendedMusic : require('./recommendedMusic'),
-  rename : require('./rename')
+  rename : require('./rename'),
+  musicAverage : require('./musicAverage')
 };
