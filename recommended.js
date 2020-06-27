@@ -101,9 +101,9 @@ let recommendation_eng = function(dataset,person,distance){
   });
   let recommend = []; 
   for(let i in rank_lst){
-    if(rank_lst[i].val < 3) {
-      break;
-    }
+    if(recommend.length === 100) break;
+    if(rank_lst[i].val < 3) break;
+    
     recommend.push(JSON.parse(rank_lst[i].items));
   }
   return recommend;
