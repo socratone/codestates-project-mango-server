@@ -31,6 +31,7 @@ app.post('/postRatingMusiclist', routes.postRatingMusiclist);
 app.use('/deleteMusiclist', routes.deleteMusiclist);
 app.get('/recommendedMusic', routes.recommendedMusic);
 app.post('/rename', routes.rename);
+app.get('/musicAverage', routes.musicAverage);
 
 const open = app.listen(3000, () => {
   console.log('3000 port start');
